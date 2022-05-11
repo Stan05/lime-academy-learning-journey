@@ -10,7 +10,8 @@ A transaction is set of instructions that alters the ledger.
 
 - What is the approximate time of every Ethereum transaction?
 
-Placeholder
+It dependes on how fast a block of transaction is produced, what is the congestion of the network and how much gas the sender of the transaction is willing to pay.
+Approximately a block is produced every 13 seconds.
 
 - What is a node?
 
