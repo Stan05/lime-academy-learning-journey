@@ -42,3 +42,9 @@ Multicall provides you with functionality to batch together multiple calls in a 
 Time lock is a mechanism to delay function calls to smart contract after a predetermined amount of time has passed, typically it's atleast 24 hours. Implementing this mechanism in your smart contract gives your users more transparency of the actions you are initiating as the owner of the smart contract.
 
 [Code example](/code-tasks/Timelock.sol)
+
+### Hardhat
+
+- **Book Library smart contract deployment**
+
+The Book Library contract can be found on Goerli network in [Etherscan](https://goerli.etherscan.io/address/0xe830547C2F46Ed6a58E9c00423aa853A30B2B237).
