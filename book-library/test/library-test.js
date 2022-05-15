@@ -6,13 +6,13 @@ describe("Library", function () {
 
     let libraryContract;
     let library;
-    let user, user2;
+    let user;
 
     before(async () => {
         libraryContract = await ethers.getContractFactory("Library");
         library = await libraryContract.deploy();
         await library.deployed();
-        [, user, user2] = await ethers.getSigners();
+        [, user] = await ethers.getSigners();
     });
 
     it("Should have no books at the begining", async function () {
