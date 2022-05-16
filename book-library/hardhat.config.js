@@ -14,23 +14,18 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 task("deploy-testnets", "Deploys contract on a provided network")
-    .setAction(async (taskArguments, hre, runSuper) => {
-        const deployLibraryContract = require("./scripts/deploy");
-        await deployLibraryContract(taskArguments);
-    });
+  .addOptionalParam("verifycontract", "Verify contract on Etherscan", false, types.boolean)
+  .setAction(async (taskArguments, hre, runSuper) => {
+    const deployLibraryContract = require("./scripts/deploy");
+    await deployLibraryContract(taskArguments);
+  });
 
 task("deploy-mainnet", "Deploys contract on a provided network")
-    .addParam("privateKey", "Please provide the private key")
-    .setAction(async ({privateKey}) => {
-        const deployLibraryContract = require("./scripts/deploy-with-param");
-        await deployLibraryContract(privateKey);
-    });
-
-    subtask("print", "Prints a message")
-    .addParam("message", "The message to print")
-    .setAction(async (taskArgs) => {
-      console.log(taskArgs.message);
-    });
+  .addParam("privateKey", "Please provide the private key")
+  .setAction(async ({privateKey}) => {
+    const deployLibraryContract = require("./scripts/deploy-with-param");
+    await deployLibraryContract(privateKey);
+  });
 
 /**
  * @type import('hardhat/config').HardhatUserConfig

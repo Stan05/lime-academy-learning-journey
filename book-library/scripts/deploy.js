@@ -1,7 +1,7 @@
 const hre = require('hardhat')
 const ethers = hre.ethers;
 
-async function deployLibraryContract() {
+async function deployLibraryContract(arguments) {
     await hre.run('compile');
     const [deployer] = await ethers.getSigners();
   
@@ -14,15 +14,16 @@ async function deployLibraryContract() {
     await library.deployed();
     
     console.log('Library Contract address: ', library.address);
-    console.log('Done!');
 
-    await hre.run("verify:verify", {
-        address: library.address,
-        constructorArguments: [
-         // if any
-        ],
-    });
-    console.log('Contract Verified in Etherscan');
+    if (arguments.verifycontract) {
+        console.log('Verifing Contract');
+        await hre.run('verify:verify', {
+            address: library.address,
+            constructorArguments: [],
+        });
+        console.log('Contract Verified in Etherscan');
+
+    }
 }
   
 module.exports = deployLibraryContract;

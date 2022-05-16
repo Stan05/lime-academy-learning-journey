@@ -25,7 +25,7 @@ describe("Library", function () {
     });
 
     it("Should allow only owner to add a book", async function () {
-      await expect(library.connect(user).addBook(BOOK_ID, 1)).to.be.revertedWith('Not invoked by the owner');
+      await expect(library.connect(user).addBook(BOOK_ID, 1)).to.be.revertedWith('Ownable: caller is not the owner');
       expect(await library.getAllBooks()).to.have.lengthOf(1);
     });
 
