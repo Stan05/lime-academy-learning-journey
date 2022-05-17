@@ -12,13 +12,13 @@ async function interactNetwork(contractNetwork, contractAddress) {
     // Check all books
     console.log('All Books: ', await libraryContract.getAllBooks());
     
-    /*// Add a Book
+    // Add a Book
     const addBookTransaction = await libraryContract.addBook('Book 1', 1);
 	const transactionReceipt = await addBookTransaction.wait();
     if (transactionReceipt.status != 1) { 
 		console.log("Adding a Book was not successful");
 		return 
-	}*/
+	}
     
     // Check all books
     console.log('All Books: ', await libraryContract.getAllBooks());
