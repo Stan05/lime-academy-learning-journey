@@ -27,6 +27,14 @@ task("deploy-mainnet", "Deploys contract on a provided network")
     await deployLibraryContract(privateKey);
   });
 
+task("interact-testnet", "Interact with Library contract on testnet")
+  .addParam("contractNetwork", "Please provide the network name")
+  .addParam("contractAddress", "Please provide the contract address")
+  .setAction(async ({contractNetwork, contractAddress}) => {
+    const interactNetwork = require("./scripts/interact-network");
+    await interactNetwork(contractNetwork, contractAddress);
+  });
+
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
@@ -45,6 +53,10 @@ module.exports = {
     },
     goerli: {
       url: process.env.GOERLI_URL,
+      accounts: [process.env.PRIVATE_KEY]
+    },
+    ropsten: {
+      url: process.env.ROPSTEN_URL,
       accounts: [process.env.PRIVATE_KEY]
     }
   },

@@ -4,7 +4,7 @@ const ethers = hre.ethers;
 async function deployLibraryContract(arguments) {
     await hre.run('compile');
     const [deployer] = await ethers.getSigners();
-  
+    
     console.log('Deploying contracts with the account:', deployer.address); 
     console.log('Account balance:', (await deployer.getBalance()).toString());
 

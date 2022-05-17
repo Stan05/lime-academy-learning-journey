@@ -48,3 +48,10 @@ Time lock is a mechanism to delay function calls to smart contract after a prede
 - **Book Library smart contract deployment**
 
 The Book Library contract can be found on Goerli network in [Etherscan](https://goerli.etherscan.io/address/0xaaac648458954e0083ddd9e30adf48600ff35080).
+
+- **Script to interact with Book Library smart contract**
+
+The script to interact with any network can be found [here](/book-library/scripts/interact-network.js). Additionally you can check some existing deployments and transactions on different networks below:
+
+- [Goerli Network](https://goerli.etherscan.io/address/0xaaac648458954e0083ddd9e30adf48600ff35080)
+- [Ropsten Network](https://ropsten.etherscan.io/address/0x76187F5B46a78A1FaD84de3A4b6095cA06b75d6d)

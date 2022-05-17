@@ -11,4 +11,7 @@ npx hardhat clean
 npx hardhat test
 npx hardhat node
 npx hardhat help
+npx hardhat deploy-testnets
+npx hardhat deploy-mainnet
+npx hardhat interact-testnet
 ```
