@@ -134,6 +134,18 @@ contract Library is Ownable {
         return bookIdToBook[_bookId].borrowedBy;
     }
 
+    function getAvailableBooks() external view returns (string[] memory) {
+        string[] memory _availableBooks = new string[](bookIds.length);
+        uint currentIndex = 0;
+        for (uint i = 0; i < bookIds.length; i++) {
+            if (availableBooks[bookIds[i]]) {
+                _availableBooks[currentIndex] = bookIds[i];
+                currentIndex++;
+            }
+        }
+        return _availableBooks;
+    }
+
     /**
         @dev Adjust the mapping that keeps track of the books that has available copies to borrow.
     */

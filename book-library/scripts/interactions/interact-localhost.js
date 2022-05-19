@@ -1,5 +1,6 @@
+
 const hre = require('hardhat');
-const Library = require('../artifacts/contracts/Library.sol/Library.json');
+const Library = require('../../artifacts/contracts/Library.sol/Library.json');
 
 const run = async function() {
 	const localProvider = new hre.ethers.providers.JsonRpcProvider('http://localhost:8545')
@@ -9,14 +10,11 @@ const run = async function() {
 
     // Check all books
     console.log('All Books: ', await libraryContract.getAllBooks());
-
+    
     // Add a Book
-    const addBookTransaction = await libraryContract.addBook('Book 1', 1);
-	const transactionReceipt = await addBookTransaction.wait();
-    if (transactionReceipt.status != 1) { 
-		console.log("Adding a Book was not successful");
-		return 
-	}
+    await addBook(libraryContract, 'Book 1', 1);
+    await addBook(libraryContract, 'Book 2', 1);
+    await addBook(libraryContract, 'Book 3', 2);
     
     // Check all books
     console.log('All Books: ', await libraryContract.getAllBooks());
@@ -36,6 +34,9 @@ const run = async function() {
     // - Checks that it is rented
     console.log('Book 1 is borrowed by ', await libraryContract.getBorrowedAddressesForBook('Book 1'))
     
+    // Get avaiable books
+    console.log('Currently available books', await libraryContract.getAvailableBooks());
+
     // - Returns the book
     const returnBookTransaction = await account2ContractInstance.returnBook('Book 1');
     const returnBookReceipt = await returnBookTransaction.wait();
@@ -47,6 +48,15 @@ const run = async function() {
 
     // - Checks the availability of the book
     console.log('Is Book 1 available: ', await libraryContract.isBookAvailable('Book 1'));
+}
+
+const addBook = async function(libraryContract, bookName, copies) {
+    const addBookTransaction = await libraryContract.addBook(bookName, copies);
+	const transactionReceipt = await addBookTransaction.wait();
+    if (transactionReceipt.status != 1) { 
+		console.log("Adding a Book was not successful");
+		process.exit(1);
+	}
 }
 
 run();

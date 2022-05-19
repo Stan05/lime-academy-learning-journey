@@ -1,7 +1,7 @@
 const hre = require('hardhat');
 const ethers = require('ethers');
 const config = require("dotenv").config();
-const Library = require('../artifacts/contracts/Library.sol/Library.json');
+const Library = require('../../artifacts/contracts/Library.sol/Library.json');
 
 async function interactNetwork(contractNetwork, contractAddress) {
 	const alchemyProvider = new hre.ethers.providers.AlchemyProvider(contractNetwork, config.parsed.ALCHEMY_API_KEY)

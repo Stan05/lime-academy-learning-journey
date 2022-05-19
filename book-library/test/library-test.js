@@ -59,4 +59,12 @@ describe("Library", function () {
     it("Should show who has borrowed a book", async function () {
       expect(await library.getBorrowedAddressesForBook(BOOK_ID)).to.include(user.address);
     })
+
+    it("Should return only available books", async function () {
+      await library.addBook('Book 2', 1);
+      await library.connect(user).borrowBook('Book 2');
+      const availableBooks = await library.getAvailableBooks();
+      expect(availableBooks).to.not.include('Book 2');
+      expect(availableBooks).to.include(BOOK_ID);
+    })
 });
