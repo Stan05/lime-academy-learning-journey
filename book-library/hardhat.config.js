@@ -32,7 +32,7 @@ task("interact-testnet", "Interact with Library contract on testnet")
   .addParam("contractNetwork", "Please provide the network name")
   .addParam("contractAddress", "Please provide the contract address")
   .setAction(async ({contractNetwork, contractAddress}) => {
-    const interactNetwork = require("./scripts/interact-network");
+    const interactNetwork = require("./scripts/interactions/interact-network");
     await interactNetwork(contractNetwork, contractAddress);
   });
 
