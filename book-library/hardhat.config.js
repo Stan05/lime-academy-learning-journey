@@ -14,10 +14,11 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 task("deploy-testnets", "Deploys contract on a provided network")
+  .addParam("contractName", "The contract name to be deployed")
   .addOptionalParam("verifycontract", "Verify contract on Etherscan", false, types.boolean)
-  .setAction(async (taskArguments, hre, runSuper) => {
-    const deployLibraryContract = require("./scripts/deploy");
-    await deployLibraryContract(taskArguments);
+  .setAction(async ({contractName, verifycontract}, hre, runSuper) => {
+    const deployContract = require("./scripts/deploy");
+    await deployContract(contractName, verifycontract);
   });
 
 task("deploy-mainnet", "Deploys contract on a provided network")

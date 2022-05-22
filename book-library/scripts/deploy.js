@@ -1,24 +1,24 @@
 const hre = require('hardhat')
 const ethers = hre.ethers;
 
-async function deployLibraryContract(arguments) {
+async function deployContract(contractName, verifycontract) {
     await hre.run('compile');
     const [deployer] = await ethers.getSigners();
     
-    console.log('Deploying contracts with the account:', deployer.address); 
+    console.log('Deploying contract %s with the account: %s', contractName, deployer.address); 
     console.log('Account balance:', (await deployer.getBalance()).toString());
 
-    const Library = await ethers.getContractFactory("Library"); // 
-    const library = await Library.deploy();
-    console.log('Waiting for Library deployment... ');
-    await library.deployed();
+    const Contract = await ethers.getContractFactory(contractName); // 
+    const contract = await Contract.deploy();
+    console.log('Waiting for deployment... ');
+    await contract.deployed();
     
-    console.log('Library Contract address: ', library.address);
+    console.log('%s Contract deployed on address: %s', contractName, contract.address);
 
-    if (arguments.verifycontract) {
+    if (verifycontract) {
         console.log('Verifing Contract');
         await hre.run('verify:verify', {
-            address: library.address,
+            address: contract.address,
             constructorArguments: [],
         });
         console.log('Contract Verified in Etherscan');
@@ -26,4 +26,4 @@ async function deployLibraryContract(arguments) {
     }
 }
   
-module.exports = deployLibraryContract;
+module.exports = deployContract;
