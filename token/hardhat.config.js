@@ -10,6 +10,14 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
   }
 });
 
+task("deploy-testnets", "Deploys contract on a provided network")
+  .addParam("contractName", "The contract name to be deployed")
+  .addOptionalParam("verifycontract", "Verify contract on Etherscan", false, types.boolean)
+  .setAction(async ({contractName, verifycontract}, hre, runSuper) => {
+    const deployContract = require("./scripts/deploy");
+    await deployContract(contractName, verifycontract);
+  });
+
 task("deploy-localhost", "Deploys on the localhost", async (taskArgs, hre) => {
   const ETHWrapperFactory = await ethers.getContractFactory("ETHWrapper"); // 
   const ETHWrapperContract = await ETHWrapperFactory.deploy();
